@@ -15,6 +15,13 @@ getApi();
 
 // WHEN I search for a city
   // Make a submit function in search box html to store user input in localstorage
+const searchButton = document.getElementById("search-button");
+const searchInput = document.getElementById("search-input");
+
+searchButton.addEventListener("click", () => {
+  const inputValue = searchInput.value;
+  alert(inputValue);
+})
   // Get user input value and use it to search api 
 // THEN I am presented with current and future conditions for that city and that city is added to the search history
   // Call API and find documentation to fetch city's conditions
