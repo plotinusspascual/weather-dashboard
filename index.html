@@ -20,16 +20,26 @@
   <header class="jumbotron">
     <h1 class="display-6">Weather Tracker</h1>
   </header>
-  <main class="container">
-    <form>
-      <div class="form-group">
-        <label for="seach-bar">Search for a City:</label>
-        <input type="search-input" class="form-control" id="search-input" placeholder="Enter a City">
-        <button type="submit" class="btn btn-primary" id="search-button">Search</button>
-      </div>
-    </form>
+  <main class="container-fluid">
+    <!--Submit Button-->
     <div class="row">
-      <div class="main col-8">Test2</div>
+      <form id="search-form">
+        <div class="form-group col-12">
+          <label for="seach-bar">Search for a City:</label>
+          <input type="search-input" class="form-control" id="search-input" placeholder="Enter a City">
+          <button type="submit" class="btn btn-primary" id="search-button">Search</button>
+        </div>
+      </form>
+      <!--Container for Searched City-->
+      <div class="col-8">
+        <div class="row">
+          <div class="print-city col-12">Test2</div>
+        </div>
+        <!--Container for 5 Day Forecast-->
+        <div class="row"> 
+          <div class="print-forecast col-12">Test3</div>
+        </div> 
+      </div>  
     </div>  
   </main>
   <script src="./assets/script.js"></script>

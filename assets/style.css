@@ -4,3 +4,10 @@
   color: black;
   border-radius: 0;
 }
+
+.container-fluid {
+  padding-right:0;
+  padding-left:0px;
+  margin-right:auto;
+  margin-left:auto
+}

@@ -1,28 +1,57 @@
-// Get API
+var searchButton = document.querySelector("#search-button");
+var searchInput = document.querySelector("#search-input");
+var searchForm = document.querySelector("#search-form");
+//Get API
+var apiKey = "6b5fdc1d15b44a61151758bf14473f6f";
+var requestURL = "https://api.openweathermap.org/data/2.5/weather?q=" 
+                  + "portland"
+                  + "&units=imperial&appid=" + apiKey;
 function getApi() {
-  var requestURL = "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=6b5fdc1d15b44a61151758bf14473f6f";
-
   fetch(requestURL)
     .then(function(response){
-      console.log("response", response)
       return response.json();
     })
+    //fetches api data with keywords
+    .then(function(data){
+      console.log(data);
+      displayInput(data);      
+    })
 }
-
 getApi();
 
-// GIVEN a weather dashboard with form inputs
+function displayInput(data){
+  const{name} = data;
+  console.log(name);
+}
 
+// GIVEN a weather dashboard with form inputs
 // WHEN I search for a city
   // Make a submit function in search box html to store user input in localstorage
-const searchButton = document.getElementById("search-button");
-const searchInput = document.getElementById("search-input");
+var formSubmitHandler = function(event){
+  event.preventDefault();
+  var city = searchInput.value.trim();
+  if(city){
+    getUserInput.value = "";
+  }
+}
 
-searchButton.addEventListener("click", () => {
-  const inputValue = searchInput.value;
-  alert(inputValue);
-})
+
+// var getUserInput = function(){
+//   searchButton.addEventListener("submit", function() {
+//     preventDefault();
+//     var cityName = searchInput.value.trim();
+//     console.log(cityName);
+//     console.log("works");
+//   });
+// }
+// getUserInput();
   // Get user input value and use it to search api 
+  // var formSubmitHandler = function(event){
+  //   event.preventDefault();
+  //   var userSearchInput = searchInput.value.trim();
+  // }
+
+searchForm.addEventListener('submit', formSubmitHandler);  
 // THEN I am presented with current and future conditions for that city and that city is added to the search history
   // Call API and find documentation to fetch city's conditions
 
