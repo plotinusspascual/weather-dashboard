@@ -21,7 +21,10 @@ getApi();
 
 function displayInput(data){
   const{name} = data;
-  console.log(name);
+  const{icon, description} = data.weather[0];
+  const{temp, humidity} = data.main;
+  const{speed} = data.wind;
+  console.log(name, icon, description, temp,humidity,speed);
 }
 
 // GIVEN a weather dashboard with form inputs
@@ -34,22 +37,6 @@ var formSubmitHandler = function(event){
     getUserInput.value = "";
   }
 }
-
-
-// var getUserInput = function(){
-//   searchButton.addEventListener("submit", function() {
-//     preventDefault();
-//     var cityName = searchInput.value.trim();
-//     console.log(cityName);
-//     console.log("works");
-//   });
-// }
-// getUserInput();
-  // Get user input value and use it to search api 
-  // var formSubmitHandler = function(event){
-  //   event.preventDefault();
-  //   var userSearchInput = searchInput.value.trim();
-  // }
 
 searchForm.addEventListener('submit', formSubmitHandler);  
 // THEN I am presented with current and future conditions for that city and that city is added to the search history
