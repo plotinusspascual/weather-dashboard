@@ -92,24 +92,44 @@ function fiveDayForecast(city) {
     })
   }
 function displayFiveDayForecast(data){
+  var printForecast = document.querySelector(".print-forecast");
+  var forecastStartDate = moment().format("MMM Do");
+  console.log(forecastStartDate);
+
   for(var i=0; i<5; i++){
     const{temp} = data.list[i].main;
-    console.log(temp);
-    
-    var forecastEl = document.createElement("div");
-    forecastEl.classList = "list-item flex-column justify-space-between align-center";
-    
-    var titleEl = document.createElement("span");
-    titleEl.textContent = temp;
-    forecastEl.appendChild(titleEl);
+    const{description} = data.list[i].weather[0];
+    const{humidity} = data.list[i].main;
 
-    var printForecast = document.querySelector(".print-forecast");
+    var forecastDate = moment().add(i, "days").format("MMM Do");
+    console.log(forecastDate);
+
+    var forecastEl = document.createElement("div");
+    forecastEl.classList = "list-item flex-row-12 justify-space-between align-center";
     
+    var dateEl = document.createElement("span");
+    dateEl.textContent = forecastDate;
+    var tempEl = document.createElement("span");
+    tempEl.textContent = " Temp: "+ temp;
+    var conditionEl = document.createElement("span");
+    conditionEl.textContent = "Weather Conditions: " + description;
+    var humidityEl = document.createElement("span");
+    humidityEl.textContent = " Humidity: " + humidity;
+    
+    forecastEl.appendChild(dateEl);
+    forecastEl.appendChild(tempEl);
+    forecastEl.appendChild(conditionEl);
+    forecastEl.appendChild(humidityEl);
    // printForecast.innerText = "Five Day Forecast " + temp;
-    printForecast.appendChild(forecastEl);
+    printForecast.appendChild(dateEl);
+    printForecast.appendChild(tempEl);
+    printForecast.appendChild(conditionEl);
+    printForecast.appendChild(humidityEl);
 
   }  
 } 
+
+
 // WHEN I click on a city in the search history
 // THEN I am again presented with current and future conditions for that city
   // Use the submit button to render all weather criteria of the city
