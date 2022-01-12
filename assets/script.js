@@ -25,6 +25,8 @@ function displayInput(data){
   const{temp, humidity} = data.main;
   const{speed} = data.wind;
   console.log(name, icon, description, temp,humidity,speed);
+  document.querySelector(".print-city").innerText = "Weather in " + name;
+  document.querySelectorAll()
 }
 
 // GIVEN a weather dashboard with form inputs
