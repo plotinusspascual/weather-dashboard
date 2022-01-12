@@ -1,13 +1,27 @@
 var searchButton = document.querySelector("#search-button");
 var searchInput = document.querySelector("#search-input");
 var searchForm = document.querySelector("#search-form");
+
+// GIVEN a weather dashboard with form inputs
+// WHEN I search for a city
+  // Make a submit function in search box html to store user input in localstorage
+// THEN I am presented with current and future conditions for that city and that city is added to the search history
+  // Call API and find documentation to fetch city's conditions
+var formSubmitHandler = function(event){
+  event.preventDefault();
+  var city = searchInput.value.trim();
+    getApi(city);
+}
+
+searchForm.addEventListener('submit', formSubmitHandler); 
+
 //Get API
 var apiKey = "6b5fdc1d15b44a61151758bf14473f6f";
-var requestURL = "https://api.openweathermap.org/data/2.5/weather?q=" 
-                  + "portland"
-                  + "&units=imperial&appid=" + apiKey;
-function getApi() {
-  fetch(requestURL)
+
+function getApi(city) {
+  fetch("https://api.openweathermap.org/data/2.5/weather?q=" 
+  + city
+  + "&units=imperial&appid=6b5fdc1d15b44a61151758bf14473f6f")
     .then(function(response){
       return response.json();
     })
@@ -17,8 +31,11 @@ function getApi() {
       displayInput(data);      
     })
 }
-getApi();
+//getApi();
 
+// WHEN I view current weather conditions for that city
+// THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
+  // Get Api calls from userInput and print on screen these criterias
 function displayInput(data){
   const{name} = data;
   const{icon, description} = data.weather[0];
@@ -31,24 +48,10 @@ function displayInput(data){
   document.querySelector(".wind-speed").innerText = "Wind Speed: " + speed;
 }
 
-// GIVEN a weather dashboard with form inputs
-// WHEN I search for a city
-  // Make a submit function in search box html to store user input in localstorage
-var formSubmitHandler = function(event){
-  event.preventDefault();
-  var city = searchInput.value.trim();
-  if(city){
-    getUserInput.value = "";
-  }
-}
+ 
 
-searchForm.addEventListener('submit', formSubmitHandler);  
-// THEN I am presented with current and future conditions for that city and that city is added to the search history
-  // Call API and find documentation to fetch city's conditions
 
-// WHEN I view current weather conditions for that city
-// THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-  // Get Api calls from userInput and print on screen these criterias
+
 
 // WHEN I view the UV index
 // THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
