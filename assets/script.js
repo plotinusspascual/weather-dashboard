@@ -91,10 +91,14 @@ function fiveDayForecast(city) {
       displayFiveDayForecast(data);      
     })
   }
+
 function displayFiveDayForecast(data){
   var printForecast = document.querySelector(".print-forecast");
   var forecastStartDate = moment().format("MMM Do");
   console.log(forecastStartDate);
+
+  printForecast.innerHTML = "";
+
 
   for(var i=0; i<5; i++){
     const{temp} = data.list[i].main;
@@ -105,31 +109,28 @@ function displayFiveDayForecast(data){
     console.log(forecastDate);
 
     var forecastEl = document.createElement("div");
-    forecastEl.classList = "list-item flex-row-12 justify-space-between align-center";
+    forecastEl.classList = "row justify-space-between align-center";
     
-    var dateEl = document.createElement("span");
-    dateEl.textContent = forecastDate;
-    var tempEl = document.createElement("span");
-    tempEl.textContent = " Temp: "+ temp;
-    var conditionEl = document.createElement("span");
-    conditionEl.textContent = "Weather Conditions: " + description;
-    var humidityEl = document.createElement("span");
-    humidityEl.textContent = " Humidity: " + humidity;
+      var dateEl = document.createElement("li");
+      dateEl.textContent = forecastDate;
+      var tempEl = document.createElement("li");
+      tempEl.textContent = " Temp: "+ temp;
+      var conditionEl = document.createElement("li");
+      conditionEl.textContent = "Weather Conditions: " + description;
+      var humidityEl = document.createElement("li");
+      humidityEl.textContent = " Humidity: " + humidity;
     
     forecastEl.appendChild(dateEl);
     forecastEl.appendChild(tempEl);
     forecastEl.appendChild(conditionEl);
     forecastEl.appendChild(humidityEl);
-   // printForecast.innerText = "Five Day Forecast " + temp;
+    
     printForecast.appendChild(dateEl);
     printForecast.appendChild(tempEl);
     printForecast.appendChild(conditionEl);
     printForecast.appendChild(humidityEl);
-
   }  
 } 
-
-
 // WHEN I click on a city in the search history
 // THEN I am again presented with current and future conditions for that city
   // Use the submit button to render all weather criteria of the city
